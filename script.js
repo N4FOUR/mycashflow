@@ -10,39 +10,35 @@ function cancel() {
 
 function new_row(amount, type, date, index) {
     const table_body = document.getElementById("cash-flow-table");
-    const new_row = table_body.insertRow(0); // Insert a new row at the end of the table
-    new_row.setAttribute('data-index', index); // Store the data index in the row
-    new_row.insertCell(0).innerHTML = amount; // Create a new cell in the row
-    const typerow = new_row.insertCell(1); // Create a new cell in the row
-    typerow.innerHTML = type; // Create a new cell in the row
-    if (type === "Income") {
-        typerow.style.color = "green"; // Green for income
-    }
-    else if (type === "Expense") {
-        typerow.style.color = "red"; // Red for expense
-    }
-    new_row.insertCell(2).innerHTML = date; // Create a new cell in the row
-    const deleteButton = document.createElement("button"); // Create a delete button
-    deleteButton.innerHTML = "Delete"; // Set button text
+    // create a new row and insert at the top of table
+    // set the data-index attribute to the index of the row
+    const new_row = table_body.insertRow(0);
+    new_row.setAttribute('data-index', index);
+    new_row.insertCell(0).innerHTML = amount;
+    // insert data to column
+    const typerow = new_row.insertCell(1).innerHTML = type;
+    new_row.insertCell(2).innerHTML = date;
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
     deleteButton.addEventListener("click", () => {
         const packdata = JSON.parse(localStorage.getItem("packdata")) || [];
-        const rowIndex = new_row.getAttribute('data-index'); // Get the index from the row
-        packdata.splice(rowIndex, 1); // Remove the data from the array
-        localStorage.setItem("packdata", JSON.stringify(packdata)); // Update local storage
-        table_body.deleteRow(new_row.rowIndex); // Delete the row from the table
-        load_data(); // Reload data to update total
-    }); // Add event listener to the button
+        const rowIndex = new_row.getAttribute('data-index');
+        packdata.splice(rowIndex, 1);
+        localStorage.setItem("packdata", JSON.stringify(packdata));
+        table_body.deleteRow(new_row.rowIndex);
+        load_data();
+    });
     new_row.insertCell(3).appendChild(deleteButton); // Append the button to the last cell of the row
 }
 
 function load_data() {
     const table_body = document.getElementById("cash-flow-table");
-    table_body.innerHTML = ""; // Clear the table before reloading data
+    table_body.innerHTML = ""; // Clear the table
     const packdata = JSON.parse(localStorage.getItem("packdata")) || [];
     let total = 0;
     console.log(packdata);
     packdata.forEach((data, index) => {
-        new_row(data.amount, data.type, data.date, index); // Pass the index to new_row
+        new_row(data.amount, data.type, data.date, index);
         if (data.type === "income") {
             total += parseFloat(data.amount); // Add income to total
         } 
@@ -51,7 +47,7 @@ function load_data() {
         }
     });
     const totalText = document.getElementById("total-text");
-    totalText.innerText = "Total: " + total.toFixed(2); // Display total in the footer
+    totalText.innerText = "Total: " + total.toFixed(2); // Display total
 }
 
 function submit() {
@@ -81,17 +77,13 @@ function submit() {
         alert("Please fill in all fields.");
     }
 }
-// Event listeners for buttons
-const subminitButton = document.getElementById("submit");
+
+// Add envent to buttons
+const subminitButton = document.getElementById("submit"); // sunmit
 subminitButton.addEventListener("click", submit);
-const cancelButton = document.getElementById("cancel");
+
+const cancelButton = document.getElementById("cancel"); // cancel
 cancelButton.addEventListener("click", cancel);
 
 // Load data when the page loads
 document.addEventListener("DOMContentLoaded", load_data);
-
-window.addEventListener("storage", function(event) {
-    if (event.key === "packdata") {
-        load_data(); // Only reload when packdata is changed
-    }
-});
