@@ -91,7 +91,10 @@ subminitButton.addEventListener("click", submit);
 const cancelButton = document.getElementById("cancel"); // cancel
 cancelButton.addEventListener("click", cancel);
 
-const clearButton = document.getElementById("clear-list");
+const addlistButton = document.document.getElementById("add-list");
+addlistButton.addEventListener("click", input_bubble);
+
+const clearButton = document.getElementById("clear-list"); //clear
 clearButton.addEventListener("click", clear_table);
 
 // Load data when the page loads
