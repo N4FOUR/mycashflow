@@ -97,7 +97,7 @@ subminitButton.addEventListener("click", submit);
 const cancelButton = document.getElementById("cancel"); // cancel
 cancelButton.addEventListener("click", cancel);
 
-const addlistButton = document.document.getElementById("add-list"); // add list
+const addlistButton = document.getElementById("add-list"); // add list
 addlistButton.addEventListener("click", input_bubble);
 
 const clearButton = document.getElementById("clear-list"); //clear
