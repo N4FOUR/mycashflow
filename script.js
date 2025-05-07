@@ -78,6 +78,11 @@ function submit() {
     }
 }
 
+function clear_table() {
+    localStorage.removeItem("packdata");
+    load_data();
+}
+
 // Add envent to buttons
 const subminitButton = document.getElementById("submit"); // sunmit
 subminitButton.addEventListener("click", submit);
