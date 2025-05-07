@@ -79,9 +79,15 @@ function submit() {
 }
 
 function clear_table() {
+    let ans = prompt("Clear all data?");
+    if(ans.toLowerCase() === "yes") {
     localStorage.removeItem("packdata");
     console.log("clear storage");
     load_data();
+    }
+    else {
+        console.log("Cancel Clear Data");
+    }
 }
 
 // Add envent to buttons
