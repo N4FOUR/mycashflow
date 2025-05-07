@@ -80,7 +80,7 @@ function submit() {
 
 function clear_table() {
     localStorage.removeItem("packdata");
-    console.log("clear storage")
+    console.log("clear storage");
     load_data();
 }
 
@@ -90,6 +90,9 @@ subminitButton.addEventListener("click", submit);
 
 const cancelButton = document.getElementById("cancel"); // cancel
 cancelButton.addEventListener("click", cancel);
+
+const clearButton = document.getElementById("clear-list");
+clearButton.addEventListener("click", clear_table);
 
 // Load data when the page loads
 document.addEventListener("DOMContentLoaded", load_data);
