@@ -80,6 +80,7 @@ function submit() {
 
 function clear_table() {
     localStorage.removeItem("packdata");
+    console.log("clear storage")
     load_data();
 }
 
