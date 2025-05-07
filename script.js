@@ -79,7 +79,7 @@ function submit() {
 }
 
 function clear_table() {
-    let ans = prompt("Clear all data?");
+    let ans = prompt("Clear all data?", "YES OR NO");
     if(ans === "yes") {
         localStorage.removeItem("packdata");
         console.log("clear storage");
