@@ -79,8 +79,8 @@ function submit() {
 }
 
 function clear_table() {
-    let ans = prompt("Clear all data?", "YES OR NO");
-    if(ans === "yes") {
+    let ans = prompt("Clear all data? yes or no", "yes");
+    if(ans.toLowerCase() === "yes") {
         localStorage.removeItem("packdata");
         console.log("clear storage");
         load_data();
